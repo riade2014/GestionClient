@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Clients</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container-fluid text-center">
+  <div><h2> Manage Clients</h2></div>
+    <div class="m-2">
+        <a class="h3" th:href="@{/clients/new}">Add new client</a>
+    </div>
+  <!--<a class="h2" th:href="@{/clients}">Manage clients</a>-->
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+    <div class="m-3">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+      <tr>
+         <th>ID</th>
+         <th>CODE</th>
+         <th>NOM</th>
+         <th>PRENOM</th>
+         <th>TELEPHONE</th>
+         <th>SEXE</th>
+         <th>DATE D'ENREGISTREMENT</th>
+          <th></th>
+      </tr>
+      </thead>
+        <tbody>
+            <th:block th:each="client : ${listClients}">
+                <tr>
+                    <td>[[${client.id}]]</td>
+                    <td>[[${client.code}]]</td>
+                    <td>[[${client.nom}]]</td>
+                    <td>[[${client.prenom}]]</td>
+                    <td>[[${client.telephone}]]</td>
+                    <td>[[${client.sexe}]]</td>
+                    <td>[[${client.dateEnregistrement}]]</td>
+                    <td>
+                        <a class="h4 mr-2" th:href="@{'/clients/edit/' + ${client.id}}">Edit</a>
+                        <a class="h4" th:href="@{'/clients/delete/' + ${client.id}}">Delete</a>
+                    </td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
